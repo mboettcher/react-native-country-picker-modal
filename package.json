@@ -29,7 +29,8 @@
     "prepublishOnly": "yarn verify && yarn config:npm",
     "postpublish": "yarn config:dev",
     "deploy": "gh-pages -d web-build",
-    "predeploy": "yarn verify && expo build:web && mkdir web-build/countries && cp ./data/countries.json web-build/countries/index.json"
+    "predeploy": "yarn verify && expo build:web && mkdir web-build/countries && cp ./data/countries.json web-build/countries/index.json",
+    "prepare": "npm run build"
   },
   "keywords": [
     "react-native",
