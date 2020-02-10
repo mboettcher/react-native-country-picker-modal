@@ -53,8 +53,7 @@ export const HeaderModal = (props: HeaderModalProps) => {
 
   if (closeButton && typeof closeButton === 'function') {
     button = closeButton({ onPress: onClose })
-  }
-  if (closeButton) {
+  } else if (closeButton) {
     button = closeButton
   }
 
