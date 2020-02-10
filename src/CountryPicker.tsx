@@ -8,7 +8,7 @@ import {
   ImageStyle,
 } from 'react-native'
 import { CountryModal } from './CountryModal'
-import { HeaderModal } from './HeaderModal'
+import { HeaderModal, CloseButtonProps } from './HeaderModal'
 import { Country, CountryCode, FlagType, Region, Subregion } from './types'
 import { CountryFilter, CountryFilterProps } from './CountryFilter'
 import { FlagButton } from './FlagButton'
@@ -68,6 +68,7 @@ interface CountryPickerProps {
   closeButtonImage?: ImageSourcePropType
   closeButtonStyle?: StyleProp<ViewStyle>
   closeButtonImageStyle?: StyleProp<ImageStyle>
+  closeButton?: (closeButtonProps: CloseButtonProps) => ReactNode | ReactNode
   renderFlagButton?(props: FlagButton['props']): ReactNode
   renderCountryFilter?(props: CountryFilter['props']): ReactNode
   onSelect(country: Country): void
@@ -106,6 +107,7 @@ export const CountryPicker = (props: CountryPickerProps) => {
     closeButtonImage,
     closeButtonStyle,
     closeButtonImageStyle,
+    closeButton,
     excludeCountries,
     placeholder,
   } = props
@@ -185,6 +187,7 @@ export const CountryPicker = (props: CountryPickerProps) => {
             closeButtonImage,
             closeButtonImageStyle,
             closeButtonStyle,
+            closeButton,
             withCloseButton,
           }}
           renderFilter={(props: CountryFilter['props']) =>

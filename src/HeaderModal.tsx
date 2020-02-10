@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
   },
 })
 
-interface CloseButtonProps {
+export interface CloseButtonProps {
   onPress: () => void
 }
 
