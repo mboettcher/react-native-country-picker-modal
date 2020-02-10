@@ -16,13 +16,17 @@ const styles = StyleSheet.create({
   },
 })
 
+interface CloseButtonProps {
+  onPress: () => void
+}
+
 interface HeaderModalProps {
   withFilter?: boolean
   withCloseButton?: boolean
   closeButtonImage?: ImageSourcePropType
   closeButtonStyle?: StyleProp<ViewStyle>
   closeButtonImageStyle?: StyleProp<ImageStyle>
-  closeButton?: ReactNode
+  closeButton?: (closeButtonProps: CloseButtonProps) => ReactNode | ReactNode
   onClose(): void
   renderFilter(props: HeaderModalProps): ReactNode
 }
@@ -38,9 +42,7 @@ export const HeaderModal = (props: HeaderModalProps) => {
     renderFilter,
   } = props
 
-  const button = closeButton ? (
-    closeButton
-  ) : (
+  let button: ReactNode = (
     <CloseButton
       image={closeButtonImage}
       style={closeButtonStyle}
@@ -48,6 +50,13 @@ export const HeaderModal = (props: HeaderModalProps) => {
       onPress={onClose}
     />
   )
+
+  if (closeButton && typeof closeButton === 'function') {
+    button = closeButton({ onPress: onClose })
+  }
+  if (closeButton) {
+    button = closeButton
+  }
 
   return (
     <View style={styles.container}>
